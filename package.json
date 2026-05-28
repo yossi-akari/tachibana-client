@@ -1,0 +1,35 @@
+{
+  "name": "tachibana-client",
+  "version": "0.1.0",
+  "description": "立花証券 e支店 API クライアント（kabura / aimee / shun 共通基盤）",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.d.ts"
+    }
+  },
+  "files": [
+    "src",
+    "types",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yossi-akari/tachibana-client.git"
+  },
+  "private": true,
+  "license": "UNLICENSED"
+}

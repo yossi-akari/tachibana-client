@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+.vitest-cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*secret*
+*credential*
