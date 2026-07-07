@@ -122,6 +122,8 @@ const RESPONSE_KEY_MAP = {
 
 // v4r9 のログイン応答は仮想URLキーが 1 つズレており（868 廃止、873 新規）、
 // WebSocket版イベントURLが新規追加されている。v4r9 だけ上書きで対応する。
+// 2026-07-07 デモ環境の実機確認で、日足履歴（CLMMfdsGetMarketPriceHistory）の
+// 取引日キーも 344→343 にズレていることが判明（kizashi起動時に全銘柄0本で発覚）。
 const RESPONSE_KEY_MAP_V4R9_OVERRIDES = {
   "868": undefined,              // v4r9 では使われない
   "869": "sUrlEvent",
@@ -129,6 +131,7 @@ const RESPONSE_KEY_MAP_V4R9_OVERRIDES = {
   "871": "sUrlMaster",
   "872": "sUrlPrice",
   "873": "sUrlRequest",
+  "343": "sTradeDate",           // v4r9 での取引日キー（v4r8は344のまま）
 };
 
 /**

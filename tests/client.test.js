@@ -56,6 +56,23 @@ describe('getResponseKeyMap: v4r8/v4r9 バージョン分岐', () => {
     });
   });
 
+  it('v4r9 では 343 が取引日（sTradeDate）にマップされる（344ではない）', async () => {
+    // 2026-07-07 デモ環境の実機確認: CLMMfdsGetMarketPriceHistory の
+    // 取引日キーは v4r9 だと 343 で返ってくる。344 のままだと sTradeDate が
+    // 常に undefined になり、日足が全銘柄で0本になる（kizashi起動時に発覚）
+    await withApiVersion('v4r9', () => {
+      const map = getResponseKeyMap();
+      expect(map['343']).toBe('sTradeDate');
+    });
+  });
+
+  it('v4r8 では従来通り 344 が取引日（sTradeDate）にマップされる', async () => {
+    await withApiVersion('v4r8', () => {
+      const map = getResponseKeyMap();
+      expect(map['344']).toBe('sTradeDate');
+    });
+  });
+
   it('共通フィールド（sResultCode 等）はバージョン非依存', async () => {
     const checkCommon = (map) => {
       expect(map['286']).toBe('sResultText');
